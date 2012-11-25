@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+
+<robot name="husar">	
+	<link name="base_link">
+		<visual>
+			<origin rpy="0 0 0" xyz="0.0 0.0 0"/>
+			<geometry>
+				<mesh filename="package://lswt_husar_sim/models/rover/husar_chassis.stl"/>
+			</geometry>
+		</visual>
+		<collision>
+			<origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+			<geometry>
+				<box size="0.1 0.1 0.1"/>
+			</geometry>
+		</collision>
+		<inertial>
+			<mass value="10"/>
+			<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="1.0"/>
+		</inertial>
+	</link>
+	<gazebo reference="base_link">
+		<material>Gazebo/Black</material>
+	</gazebo>
+
+
+<link name="wheel1">
+	<visual>
+		<origin  rpy="0.0 1.57075 1.57075" xyz="0.34 -0.22 0.0"/>
+		<geometry>
+			<!-- <mesh filename="package://lswt_husar_sim/models/rover/husar_wheel.stl"/>-->
+			<cylinder radius="0.1" length="0.05"/>
+      		</geometry>
+	</visual>
+	<collision>
+		<origin rpy="0 0 0" xyz="0 0.0 0.0"/>
+      		<geometry>
+        		<box size="0.1 0.1 0.1"/>
+      		</geometry>
+	</collision>
+	<inertial>
+      		<mass value="3"/>
+      		<inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="100.0" iyz="0.0" izz="1.0"/>
+	</inertial>
+</link>
+
+<gazebo reference="wheel1">
+	<material>Gazebo/Blue</material>
+</gazebo>
+
+
+<joint name="base_link_to_wheel1_joint" type="continuous">
+	<axis xyz="0 1 0"/>
+	<parent link="base_link"/>
+	<child link="wheel1"/>
+	<origin xyz="0.34 -0.22 0.0"/>
+</joint>
+
+
+<!-- 
+
+  <joint name="base_link_to_wheel2_joint" type="continuous">
+	<axis xyz="0 1 0"/>
+    <parent link="base_link"/>
+    <child link="wheel2"/>
+    <origin xyz="0.22 -0.298 0.177"/>
+  </joint>
+
+  <link name="wheel2">
+    <visual>
+      <origin rpy="0 0 1.57075" xyz="0.0 0.0 0.0"/>
+      <geometry>
+		<mesh filename="package://rrg_RoMegModel/robots/romeg_bryla/wheel.stl"/>
+      </geometry>
+	  <material name="black">
+       <color rgba="0.41 0.41 0.41 1"/>
+   	  </material>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_wheel3_joint" type="continuous">
+	<axis xyz="0 1 0"/>
+    <parent link="base_link"/>
+    <child link="wheel3"/>
+    <origin xyz="-0.22 0.298 0.177"/>
+  </joint>
+
+  <link name="wheel3">
+    <visual>
+      <origin rpy="0 0 1.57075" xyz="0.0 0.0 0.0"/>
+      <geometry>
+		<mesh filename="package://rrg_RoMegModel/robots/romeg_bryla/wheel.stl"/>
+      </geometry>
+	  <material name="black">
+       <color rgba="0.41 0.41 0.41 1"/>
+   	  </material>
+    </visual>
+  </link>
+
+  <joint name="base_link_to_wheel4_joint" type="continuous">
+	<axis xyz="0 1 0"/>
+    <parent link="base_link"/>
+    <child link="wheel4"/>
+    <origin xyz="-0.22 -0.298 0.177"/>
+  </joint>
+
+  <link name="wheel4">
+    <visual>
+      <origin rpy="0 0 1.57075" xyz="0.0 0.0 0.0"/>
+      <geometry>
+		<mesh filename="package://rrg_RoMegModel/robots/romeg_bryla/wheel.stl"/>
+      </geometry>
+	  <material name="black">
+       <color rgba="0.41 0.41 0.41 1"/>
+   	  </material>
+    </visual>
+  </link>
+
+-->
+</robot>

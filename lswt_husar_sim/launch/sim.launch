@@ -1,0 +1,25 @@
+<launch>
+	<param name="/use_sim_time" value="true" />
+	<include file="$(find gazebo_worlds)/launch/empty_world.launch" />
+
+<!-- include LunArena model into simulation -->
+<!--
+	<param name="env_description" command="$(find xacro)/xacro.py $(find lswt_husar_sim)/models/env/env.urdf.xacro" />
+  	<node name="spawn_env" pkg="gazebo" type="spawn_model" args="-urdf -param env_description -z 0.01 -model env_model" respawn="false" output="screen" />
+-->
+
+<!-- include HUSAR model into simulation -->
+	<param name="robot_description" command="$(find xacro)/xacro.py $(find lswt_husar_sim)/models/rover/husar.urdf" />
+  	<node name="spawn_husar" pkg="gazebo" type="spawn_model" args="-urdf -param robot_description -z 0.01 -model husar_model" respawn="false" output="screen" />
+
+  <!-- robot state publisher -->
+
+  <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher" />
+
+
+  <!-- joint state publisher with gui -->
+
+  <param name="use_gui" value="true" />
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher"/>
+
+</launch>
